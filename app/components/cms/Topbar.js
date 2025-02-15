@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { useEditor } from "@craftjs/core";
 
@@ -15,7 +16,7 @@ export const Topbar = () => {
     };
 
     return (
-        <div className="px-2 py-2 mx-1 bg-gray-950 text-gray-100 w-full">
+        <div className="px-2 py-2 bg-gray-950 text-gray-100 w-full">
             <div className="flex items-center gap-1">
                 <div className="flex-1">
                     <label className="flex items-center">

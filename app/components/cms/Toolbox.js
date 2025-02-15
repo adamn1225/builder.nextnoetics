@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef, useEffect, forwardRef } from 'react';
 import { Element, useEditor } from "@craftjs/core";
 import { Container } from "./user/Container";
@@ -22,7 +23,7 @@ export const Toolbox = () => {
     }, [connectors]);
 
     return (
-        <div className="p-4">
+        <div className="px-2">
             <div className="flex flex-col items-center space-y-2">
                 <div className='text-nowrap'>
                     <span style={{ padding: '8px' }} className="text-xl underline font-semibold text-gray-100">Drag to add</span>

@@ -1,5 +1,5 @@
-import Sidebar from '../components/SideNav'; // Adjust path if needed
-import TopNav from '../components/TopNav'; // Import the TopNav component
+import Sidebar from '@components/SideNav';
+import TopNav from '@components/TopNav'; // Import the TopNav component
 import React from 'react';
 import "./globals.css";
 
@@ -9,9 +9,9 @@ const RootLayout = ({ children }) => {
       <head>
         {/* Add any head elements here */}
       </head>
-      <body className="flex h-screen bg-gray-100 dark:bg-gray-800">
+      <body className="flex h-screen bg-gray-100 dark:bg-gray-800 overflow-x-hidden">
         <Sidebar />
-        <div className="flex-1 flex flex-col">
+        <div className="flex-1 flex flex-col h-screen">
           <TopNav />
           <div className="flex-1 overflow-auto">
             {children}

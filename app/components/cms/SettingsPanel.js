@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import { useEditor } from "@craftjs/core";
 
@@ -21,7 +22,7 @@ export const SettingsPanel = () => {
     });
 
     return selected ? (
-        <div className="bg-gray-950 mt-2 p-2 w-full overflow-auto">
+        <div className="bg-gray-950 mt-2 px-2">
             <div className="flex flex-col space-y-2">
                 <div>
                     <div className="flex items-center text-gray-100">
