@@ -107,7 +107,6 @@ const TextSettings = () => {
                             <option value="%">%</option>
                         </select>
                     </div>
-
                 </div>
                 <div className="flex items-center justify-center gap-2">
                     <div className="flex items-center gap-2">
@@ -128,7 +127,6 @@ const TextSettings = () => {
                                 <option value="lighter">Lighter</option>
                             </select>
                         </div>
-
                         <div className="flex flex-col items-center justify-center gap-1">
                             <label className="underline font-semibold text-sm text-gray-100">Font Style</label>
                             <select
@@ -151,7 +149,6 @@ const TextSettings = () => {
                         <button className="bg-zinc-950 px-2 py-1 text-gray-100 rounded-md shadow-sm shadow-secondary" onClick={() => setProp((props) => props.textAlign = 'right')}><AlignRight /></button>
                     </div>
                 </div>
-
             </div>
             <div className={activeTab === 'css' ? 'flex flex-col gap-1' : 'hidden'}>
                 <label className="font-semibold text-sm underline">Custom Class</label>

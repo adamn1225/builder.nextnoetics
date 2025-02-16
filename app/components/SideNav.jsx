@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Folder, ClipboardList, Settings, MonitorCog } from 'lucide-react';
+import { Folder, ClipboardList, Settings, MonitorCog, LayoutPanelLeft } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import nextlogo from '@public/next_noetics.png';
-import logomin from '@public/next_noetics_ico.png';
+import nextlogo from '../../public/next_noetics.png';
+import logomin from '../../public/next_noetics_ico.png';
 
 const navItems = [
   { name: 'CMS', href: '/', icon: MonitorCog },
@@ -14,28 +14,25 @@ const navItems = [
   { name: 'Tasks', href: '/', icon: ClipboardList },
 ];
 
-const Sidebar = () => {
+const SideNav = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const currentPath = usePathname();
  
   return (
-    <aside className={`bg-gray-950 h-screen pb-28 text-white transition-all duration-300 ${isCollapsed ? 'w-14' : 'w-44'} overflow-hidden relative`}>
+    <aside className={`bg-gray-950 h-screen pb-28 text-white transition-all duration-300 ${isCollapsed ? 'w-14' : 'w-36'} overflow-hidden relative`}>
       {loading && (
         <div className="absolute top-0 left-0 w-full h-1 bg-blue-700 animate-pulse"></div>
       )}
 
-      <div className="flex items-center justify-between">
-        <h2 className={`text-xl font-bold transition-all duration-300 ${isCollapsed ? 'hidden' : 'block  pl-4'}`}>
-          Dashboard
-        </h2>
+      <div className="flex items-center justify-normal h-14 bg-gray-950">
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
           className={`text-white font-extrabold flex justify-center w-full text-2xl focus:outline-none underline`}
           style={{ zIndex: 10 }}
         >
-          {isCollapsed ? '>' : '<'}
+          {isCollapsed ? <LayoutPanelLeft /> : <LayoutPanelLeft size={32} />}
         </button>
       </div>
       <div className={`flex items-center ${isCollapsed ? 'justify-center pt-2 pb-4' : 'justify-start  py-4 pr-4'} gap-1 w-full pl-1`}>
@@ -80,4 +77,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SideNav;

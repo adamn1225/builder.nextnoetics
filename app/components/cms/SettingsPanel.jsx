@@ -21,6 +21,8 @@ export const SettingsPanel = () => {
         }
     });
 
+    console.log('Selected component:', selected);
+
     return selected ? (
         <div className="bg-gray-950 mt-2 px-2">
             <div className="flex flex-col space-y-2">
