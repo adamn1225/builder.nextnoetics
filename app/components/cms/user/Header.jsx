@@ -5,7 +5,7 @@ import ContentEditable from 'react-contenteditable';
 import { Slider } from '@mui/material';
 import { AlignCenter, AlignLeft, AlignRight } from 'lucide-react';
 
-export const Text = ({ text, fontSize, textAlign, color, fontWeight, fontStyle }) => {
+export const Header = ({ text, fontSize, textAlign, color, fontWeight, fontStyle, tagName }) => {
     const { connectors: { connect, drag }, hasSelectedNode, actions: { setProp } } = useNode((state) => ({
         hasSelectedNode: state.events.selected,
     }));
@@ -22,20 +22,21 @@ export const Text = ({ text, fontSize, textAlign, color, fontWeight, fontStyle }
                         props.text = e.target.value.replace(/<\/?[^>]+(>|$)/g, "")
                     )
                 }
-                tagName="p"
+                tagName={tagName}
                 style={{ fontSize, textAlign, color, fontWeight, fontStyle, border: '1px solid #ddd', padding: '0 4px' }}
             />
         </div>
     )
 };
 
-const TextSettings = () => {
-    const { actions: { setProp }, fontSize, textAlign, color, fontWeight, fontStyle } = useNode((node) => ({
+const HeaderSettings = () => {
+    const { actions: { setProp }, fontSize, textAlign, color, fontWeight, fontStyle, tagName } = useNode((node) => ({
         fontSize: node.data.props.fontSize,
         textAlign: node.data.props.textAlign,
         color: node.data.props.color,
         fontWeight: node.data.props.fontWeight,
-        fontStyle: node.data.props.fontStyle
+        fontStyle: node.data.props.fontStyle,
+        tagName: node.data.props.tagName
     }));
     const [activeTab, setActiveTab] = useState('slider');
     const [unit, setUnit] = useState('px');
@@ -62,9 +63,13 @@ const TextSettings = () => {
         setProp((props) => props.fontStyle = e.target.value);
     };
 
+    const handleTagNameChange = (e) => {
+        setProp((props) => props.tagName = e.target.value);
+    };
+
     return (
         <div>
-            <div className="flex space-x-2 text-gray-100">
+            <div className="flex justify-center space-x-2 text-gray-100">
                 <button
                     onClick={() => setActiveTab('slider')}
                     className={`px-2 py-1 rounded-md ${activeTab === 'slider' ? 'bg-gray-200 text-zinc-900' : 'bg-gray-400 text-zinc-900'}`}
@@ -78,10 +83,12 @@ const TextSettings = () => {
                     Insert CSS
                 </button>
             </div>
-            <div className={activeTab === 'slider' ? 'space-y-4' : 'hidden'}>
-                <label className="font-semibold text-sm underline text-gray-100">Font Size</label>
+            <div className={activeTab === 'slider' ? 'space-y-2 mt-6' : 'hidden'}>
+            
                 <div className="flex items-center justify-center gap-1">
+                    
                     <div className="flex items-center justify-stretch w-full gap-2">
+                         <label className="w-full font-semibold text-sm underline text-gray-100">Font Size
                         <Slider
                             value={fontSize ? parseInt(fontSize, 10) : 0}
                             onChange={(e, value) => handleFontSizeChange(value.toString())}
@@ -89,17 +96,17 @@ const TextSettings = () => {
                             min={7}
                             max={100}
                             valueLabelDisplay="auto"
-                        />
+                        /></label>
                         <input
                             value={fontSize ? parseInt(fontSize, 10) : 0}
                             onChange={(e) => handleFontSizeChange(e.target.value)}
                             type="number"
-                            className={`w-12 h-6 border border-gray-300 rounded-md p-1`}
+                            className={`w-12 h-7 border border-gray-300 rounded-md py-2 px-1`}
                         />
                         <select
                             value={unit}
                             onChange={handleUnitChange}
-                            className="border border-gray-300 rounded-md p-1"
+                            className="border border-gray-300 bg-white rounded-md p-1"
                         >
                             <option value="px">px</option>
                             <option value="em">em</option>
@@ -108,18 +115,27 @@ const TextSettings = () => {
                         </select>
                     </div>
                 </div>
-                <div className="flex items-center justify-center gap-2">
-                    <div className="flex items-center gap-2">
-                        <div className="flex flex-col items-center justify-center gap-1">
-                            <label className="underline text-sm font-semibold text-gray-100">Color</label>
-                            <input className="w-6" type="color" value={color} onChange={handleColorChange} />
-                        </div>
-                        <div className="flex flex-col items-center justify-center gap-1">
-                            <label className="underline font-semibold text-sm text-gray-100">Font Weight</label>
+                <div className="flex justify-start items-center gap-3">
+                    <div className="flex flex-col items-center justify-center gap-1">
+                        <label className="font-semibold text-normal underline text-gray-100">Tag</label>
+                        <select
+                            value={tagName}
+                            onChange={handleTagNameChange}
+                            className="border border-gray-300 py-1 rounded-sm text-zinc-900"
+                        >
+                            <option value="h1">h1</option>
+                            <option value="h2">h2</option>
+                            <option value="h3">h3</option>
+                            <option value="h4">h4</option>
+                            <option value="p">p</option>
+                        </select>
+                    </div>
+                    <div className="flex flex-col items-center justify-center gap-1">
+                            <label className="underline font-semibold text-normal text-gray-100">Font Weight</label>
                             <select
                                 value={fontWeight}
                                 onChange={handleFontWeightChange}
-                                className="border border-gray-300 rounded-md p-1 text-zinc-900"
+                                className="border border-gray-300 rounded-sm p-1 text-zinc-900"
                             >
                                 <option value="normal">Normal</option>
                                 <option value="bold">Bold</option>
@@ -139,7 +155,14 @@ const TextSettings = () => {
                                 <option value="oblique">Oblique</option>
                             </select>
                         </div>
-                    </div>
+                        <div className="flex flex-col items-start justify-center gap-1">
+                            <label className="underline text-sm font-semibold text-gray-100">Color</label>
+                            <input className="w-6" type="color" value={color} onChange={handleColorChange} />
+                        </div>
+                </div>
+                
+                <div className="flex items-center justify-center gap-2">
+
                 </div>
                 <div className="flex flex-col items-center gap-2">
                     <label className="font-semibold underline text-lg text-gray-100">Text Alignment</label>
@@ -149,6 +172,7 @@ const TextSettings = () => {
                         <button className="bg-zinc-950 px-2 py-1 text-gray-100 rounded-md shadow-sm shadow-secondary" onClick={() => setProp((props) => props.textAlign = 'right')}><AlignRight /></button>
                     </div>
                 </div>
+
             </div>
             <div className={activeTab === 'css' ? 'flex flex-col gap-1' : 'hidden'}>
                 <label className="font-semibold text-sm underline">Custom Class</label>
@@ -166,9 +190,9 @@ const TextSettings = () => {
     )
 };
 
-Text.craft = {
-    props: { text: 'Header', fontSize: '20px', textAlign: 'left', color: '#000000', fontWeight: 'normal', fontStyle: 'normal' },
+Header.craft = {
+    props: { text: 'Header', fontSize: '20px', textAlign: 'center', color: '#000000', fontWeight: 'normal', fontStyle: 'normal', tagName: 'p' },
     related: {
-        settings: TextSettings
+        settings: HeaderSettings
     }
 };

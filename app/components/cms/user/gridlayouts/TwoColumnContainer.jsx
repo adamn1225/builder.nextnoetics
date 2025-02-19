@@ -1,53 +1,64 @@
 "use client";
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { useNode, Element } from "@craftjs/core";
-import { Container } from "../Container";
+import { Container, ContainerSettings } from "../Container";
 
-export const ContainerOne = ({ children }) => {
-  const { connectors: { connect } } = useNode();
-  return (
-    <div ref={connect} style={{ padding: '10px', border: '1px solid #ccc' }}>
-      {children}
-    </div>
-  );
+export const FirstContainer = ({ children }) => {
+    const { connectors: { connect, drag } } = useNode();
+    return (
+        <div ref={connect}>
+            {children}
+        </div>
+    )
 };
 
-ContainerOne.craft = {
-  rules: {
-    canMoveIn: (incomingNodes) => incomingNodes.every(incomingNode => incomingNode.data.type === Element)
-  }
+FirstContainer.craft = {
+    rules: {
+        canMoveIn: (incomingNodes) => incomingNodes.every(incomingNode => incomingNode.data.type === Container)
+    }
 };
 
-export const ContainerTwo = ({ children }) => {
-  const { connectors: { connect } } = useNode();
-  return (
-    <div ref={connect} style={{ padding: '10px', border: '1px solid #ccc' }}>
-      {children}
-    </div>
-  );
+export const SecondContainer = ({ children }) => {
+    const { connectors: { connect, drag } } = useNode();
+    return (
+        <div ref={connect}>
+            {children}
+        </div>
+    )
 };
 
-ContainerTwo.craft = {
-  rules: {
-    canMoveIn: (incomingNodes) => incomingNodes.every(incomingNode => incomingNode.data.type === Element)
-  }
+SecondContainer.craft = {
+    rules: {
+        canMoveIn: (incomingNodes) => incomingNodes.every(incomingNode => incomingNode.data.type === Container)
+    }
 };
 
 export const TwoColumnContainer = ({ background, padding = 0, borderColor = 'gray-400' }) => {
-  const { connectors: { connect, drag } } = useNode();
+    const { connectors: { connect, drag } } = useNode();
+    const ref = useRef(null);
 
-  return (
-    <Container background={background} padding={padding} borderColor={borderColor}>
-      <div ref={ref => connect(drag(ref))} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-        <Element is={ContainerOne} canvas />
-        <Element is={ContainerTwo} canvas />
-      </div>
-    </Container>
-  );
+    useEffect(() => {
+        if (ref.current) {
+            connect(drag(ref.current));
+        }
+    }, [connect, drag]);
+
+    return (
+        <Container style={{ background, padding: `${padding}px`, borderColor, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }} className="m-2 border-dotted border-2 w-full" ref={ref}>
+            <div className="grid grid-cols-2 gap-2 text-nowrap -mx-2 w-full">
+                <Element is={FirstContainer} id="columnone" background={background} padding={padding} borderColor={borderColor} canvas >
+                    <Container className="w-1/2" id="columnone" background={background} padding={padding} borderColor={borderColor} canvas />
+                </Element>
+                <Element is={SecondContainer} id="columntwo" background={background} padding={padding} borderColor={borderColor} canvas >
+                    <Container className="w-1/2" id="columntwo" background={background} padding={padding} borderColor={borderColor} canvas />
+                </Element>
+            </div>
+        </Container>
+    );
 };
 
 TwoColumnContainer.craft = {
-  rules: {
-    canMoveIn: (incomingNodes) => incomingNodes.every(incomingNode => incomingNode.data.type === Element)
-  }
+    related: {
+        settings: ContainerSettings
+    }
 };

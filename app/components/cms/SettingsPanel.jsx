@@ -26,23 +26,22 @@ export const SettingsPanel = () => {
     return selected ? (
         <div className="bg-gray-950 mt-2 px-2">
             <div className="flex flex-col space-y-2">
-                <div>
-                    <div className="flex items-center text-gray-100">
-                        <div className="flex-1">
-                            <span className="px-2 py-1 underline text-gray-100 text-sm rounded font-semibold">{selected.name} Selected</span>
-                        </div>
+
+                <div className='border border-gray-200 px-6 py-3 shadow-md shadow-secondary'>
+                
+                    <div className="flex items-center justify-center text-gray-100 pb-2">
+                            <span className="px-2 py-1 underline underline-offset-4 text-center text-white text-lg  font-medium">{selected.name} Component Selected</span>
                     </div>
-                </div>
-                {selected.settings && React.createElement(selected.settings)}
+                    {selected.settings && React.createElement(selected.settings)}</div>
                 {selected.isDeletable && (
-                    <div className="mt-6 w-full justify-center flex">
+                    <div className="w-full justify-center flex">
                         <button
-                            className="bg-red-500 text-white py-1 px-2 rounded mt-12"
+                            className="bg-red-500 hover:bg-red-600 text-white font-semibold shadow-sm py-1 px-2 rounded mt-3"
                             onClick={() => {
                                 actions.delete(selected.id);
                             }}
                         >
-                            Delete
+                            Delete Component
                         </button>
                     </div>
                 )}

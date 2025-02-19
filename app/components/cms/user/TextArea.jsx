@@ -172,5 +172,8 @@ TextArea.craft = {
     props: { text: 'Text Area', fontSize: '20px', textAlign: 'left', color: '#000000', fontWeight: 'normal', fontStyle: 'normal', height: '250px', width: '100%' },
     related: {
         settings: TextAreaSettings
+    },
+    rules: {
+        canDrag: () => true
     }
 };
