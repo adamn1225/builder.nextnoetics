@@ -100,5 +100,9 @@ export const ThreeColumnContainerSettings = () => {
 ThreeColumnContainer.craft = {
     related: {
         settings: ThreeColumnContainerSettings
+    },
+    rules: {
+        canMoveOut: (incomingNodes) => incomingNodes.every(incomingNode => incomingNode.data.type === Element && incomingNode.data.type === Column && incomingNode.data.type === Container),
+        canMoveIn: (incomingNodes) => incomingNodes.every(incomingNode => incomingNode.data.type === Container)
     }
 };

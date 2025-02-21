@@ -40,9 +40,11 @@ export const Card = ({ background, padding = 20 }) => {
     return (
         <Container background={background} padding={padding}>
             <Element is={CardTop} id="card-top" canvas>
-                <Header text="Title" fontSize={20} />
-                <Header text="Subtitle" fontSize={15} />
-                <TextArea text="Description" fontSize={12} />
+                <div className="flex flex-col gap-1">
+                    <Header text="Title" fontSize={20} />
+                    <Header text="Subtitle" fontSize={15} />
+                    <TextArea text="Description" fontSize={12} />
+                </div>
             </Element>
             <Element is={CardBottom} id="card-bottom" canvas>
                 <Button size="small" variant="contained" color="primary">

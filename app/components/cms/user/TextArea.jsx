@@ -18,6 +18,7 @@ export const TextArea = ({ text, fontSize, textAlign, color, fontWeight, fontSty
             >
                 <ContentEditable
                     html={text}
+                    className="p-2"
                     onChange={e =>
                         setProp((props) =>
                             props.text = e.target.value.replace(/<\/?[^>]+(>|$)/g, "")

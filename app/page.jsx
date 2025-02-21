@@ -8,21 +8,23 @@ import { Button } from './components/cms/user/Button';
 import { Card, CardTop, CardBottom } from './components/cms/user/Card';
 import { Header } from './components/cms/user/Header';
 import { TextArea } from './components/cms/user/TextArea';
-import { OneColumnContainer } from './components/cms/user/gridlayouts/OneColumnContainer';
-import { FirstContainer, SecondContainer } from './components/cms/user/gridlayouts/TwoColumnContainer';
+import { OneColumnContainer, OneColumnContainerSettings, ColumnOne } from './components/cms/user/gridlayouts/OneColumnContainer';
+import { TwoColumnContainerSettings, ColumnTwo, TwoColumnContainer } from './components/cms/user/gridlayouts/TwoColumnContainer';
 import { ThreeColumnContainer, Column, ThreeColumnContainerSettings } from './components/cms/user/gridlayouts/ThreeColumnContainer';
 
 export default function App() {
   return (
     <div className='w-full h-screen'>
-      <div className="pb-4 w-full h-full">
-        <Editor resolver={{ Card, Button, Header, Container, CardTop, Column, CardBottom, OneColumnContainer, ThreeColumnContainerSettings, TextArea, ThreeColumnContainer, FirstContainer, SecondContainer }}>
-          <div className="w-full h-full flex">
-            <div className="w-full h-full px-3 lg:mb-0">
+      <div className="pb-4 w-full h-screen">
+        <Editor resolver={{ Card, Button, Header, Container, CardTop, ColumnOne, Column, ColumnTwo, CardBottom, TwoColumnContainer, ThreeColumnContainerSettings, TextArea, ThreeColumnContainer, TwoColumnContainerSettings, OneColumnContainer, OneColumnContainerSettings  }}>
+          <div className="w-full h-screen flex">
+            <div className="w-full h-screen px-3 lg:mb-0">
               <Frame>
                 <Element is={Container} padding={5} background="#fff" canvas>
                   <Card />
-                  <ThreeColumnContainer background="#fff" padding={10} borderColor="gray-400" height="" />
+                  <OneColumnContainer background="#fff" padding={10} borderColor="gray-400" height="" gap="4" layout="grid" />
+                  <TwoColumnContainer background="#fff" padding={10} borderColor="gray-400" height="" gap="4" layout="grid" />
+                  <ThreeColumnContainer background="#fff" padding={10} borderColor="gray-400" height=""  layout="grid" />
                 </Element>
               </Frame>
             </div>
