@@ -9,20 +9,20 @@ import { Card, CardTop, CardBottom } from './components/cms/user/Card';
 import { Header } from './components/cms/user/Header';
 import { TextArea } from './components/cms/user/TextArea';
 import { OneColumnContainer } from './components/cms/user/gridlayouts/OneColumnContainer';
-import { TwoColumnContainer, FirstContainer, SecondContainer } from './components/cms/user/gridlayouts/TwoColumnContainer';
-import { ContainerOne, ContainerTwo, ContainerThree, ThreeColumnContainer } from './components/cms/user/gridlayouts/ThreeColumnContainer';
+import { FirstContainer, SecondContainer } from './components/cms/user/gridlayouts/TwoColumnContainer';
+import { ThreeColumnContainer, Column, ThreeColumnContainerSettings } from './components/cms/user/gridlayouts/ThreeColumnContainer';
 
 export default function App() {
   return (
     <div className='w-full h-screen'>
       <div className="pb-4 w-full h-full">
-        <Editor resolver={{ Card, Button, Header, Container, CardTop, CardBottom, ContainerOne, ContainerTwo, ContainerThree, OneColumnContainer, TextArea, TwoColumnContainer, ThreeColumnContainer, FirstContainer, SecondContainer }}>
+        <Editor resolver={{ Card, Button, Header, Container, CardTop, Column, CardBottom, OneColumnContainer, ThreeColumnContainerSettings, TextArea, ThreeColumnContainer, FirstContainer, SecondContainer }}>
           <div className="w-full h-full flex">
             <div className="w-full h-full px-3 lg:mb-0">
               <Frame>
                 <Element is={Container} padding={5} background="#fff" canvas>
                   <Card />
-                  <ThreeColumnContainer background="#fff" padding={10} borderColor="gray-400" />
+                  <ThreeColumnContainer background="#fff" padding={10} borderColor="gray-400" height="" />
                 </Element>
               </Frame>
             </div>
