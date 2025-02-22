@@ -5,7 +5,7 @@ import { Toolbox } from './components/cms/Toolbox';
 import { SettingsPanel } from './components/cms/SettingsPanel';
 import { Container } from './components/cms/user/Container';
 import { Button, ButtonSettings } from './components/cms/user/Button';
-import { Card, CardTop } from './components/cms/user/Card';
+import { Card, CardTop, CardSettings } from './components/cms/user/Card';
 import { Header } from './components/cms/user/Header';
 import { TextArea } from './components/cms/user/TextArea';
 import { OneColumnContainer, OneColumnContainerSettings } from './components/cms/user/gridlayouts/OneColumnContainer';
@@ -16,7 +16,7 @@ export default function App() {
   return (
     <div className='w-full h-screen'>
       <div className="pb-4 w-full h-screen">
-        <Editor resolver={{ Card, Button, Header, Container, CardTop, TwoColumnContainer, ThreeColumnContainerSettings, TextArea, ThreeColumnContainer, TwoColumnContainerSettings, OneColumnContainer, OneColumnContainerSettings, MainContainer, MainContainerSettings, ButtonSettings }}>
+        <Editor resolver={{ Card, Button, Header, Container, CardTop, TwoColumnContainer, ThreeColumnContainerSettings, TextArea, ThreeColumnContainer, TwoColumnContainerSettings, OneColumnContainer, OneColumnContainerSettings, MainContainer, MainContainerSettings, ButtonSettings, CardSettings }}>
           <div className="w-full h-full flex">
             <div className="w-full h-full px-20 mt-12 lg:mb-0">
               <Frame>
