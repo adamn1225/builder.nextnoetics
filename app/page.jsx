@@ -4,27 +4,26 @@ import { Editor, Frame, Element } from "@craftjs/core";
 import { Toolbox } from './components/cms/Toolbox';
 import { SettingsPanel } from './components/cms/SettingsPanel';
 import { Container } from './components/cms/user/Container';
-import { Button } from './components/cms/user/Button';
-import { Card, CardTop, CardBottom } from './components/cms/user/Card';
+import { Button, ButtonSettings } from './components/cms/user/Button';
+import { Card, CardTop } from './components/cms/user/Card';
 import { Header } from './components/cms/user/Header';
 import { TextArea } from './components/cms/user/TextArea';
-import { OneColumnContainer, OneColumnContainerSettings, ColumnOne } from './components/cms/user/gridlayouts/OneColumnContainer';
-import { TwoColumnContainerSettings, ColumnTwo, TwoColumnContainer } from './components/cms/user/gridlayouts/TwoColumnContainer';
-import { ThreeColumnContainer, Column, ThreeColumnContainerSettings } from './components/cms/user/gridlayouts/ThreeColumnContainer';
-
+import { OneColumnContainer, OneColumnContainerSettings } from './components/cms/user/gridlayouts/OneColumnContainer';
+import { TwoColumnContainerSettings, TwoColumnContainer } from './components/cms/user/gridlayouts/TwoColumnContainer';
+import { ThreeColumnContainer, ThreeColumnContainerSettings } from './components/cms/user/gridlayouts/ThreeColumnContainer';
+import {MainContainer, MainContainerSettings} from './components/cms/MainContainer';
 export default function App() {
   return (
     <div className='w-full h-screen'>
       <div className="pb-4 w-full h-screen">
-        <Editor resolver={{ Card, Button, Header, Container, CardTop, ColumnOne, Column, ColumnTwo, CardBottom, TwoColumnContainer, ThreeColumnContainerSettings, TextArea, ThreeColumnContainer, TwoColumnContainerSettings, OneColumnContainer, OneColumnContainerSettings  }}>
-          <div className="w-full h-screen flex">
-            <div className="w-full h-screen px-3 lg:mb-0">
+        <Editor resolver={{ Card, Button, Header, Container, CardTop, TwoColumnContainer, ThreeColumnContainerSettings, TextArea, ThreeColumnContainer, TwoColumnContainerSettings, OneColumnContainer, OneColumnContainerSettings, MainContainer, MainContainerSettings, ButtonSettings }}>
+          <div className="w-full h-full flex">
+            <div className="w-full h-full px-20 mt-12 lg:mb-0">
               <Frame>
-                <Element is={Container} padding={5} background="#fff" canvas>
+                <Element is={MainContainer} padding={5} background="#fff" canvas>
                   <Card />
-                  <OneColumnContainer background="#fff" padding={10} borderColor="gray-400" height="" gap="4" layout="grid" />
-                  <TwoColumnContainer background="#fff" padding={10} borderColor="gray-400" height="" gap="4" layout="grid" />
                   <ThreeColumnContainer background="#fff" padding={10} borderColor="gray-400" height=""  layout="grid" />
+                  {/* <TwoColumnContainer background="#fff" padding={10} borderColor="gray-400" height="" layout="grid" /> */}
                 </Element>
               </Frame>
             </div>

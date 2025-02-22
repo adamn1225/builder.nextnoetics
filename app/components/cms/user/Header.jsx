@@ -4,6 +4,7 @@ import { useNode } from "@craftjs/core";
 import ContentEditable from 'react-contenteditable';
 import { Slider } from '@mui/material';
 import { AlignCenter, AlignLeft, AlignRight } from 'lucide-react';
+import { rule } from "postcss";
 
 export const Header = ({ text, fontSize, textAlign, color, fontWeight, fontStyle, tagName }) => {
     const { connectors: { connect, drag }, hasSelectedNode, actions: { setProp } } = useNode((state) => ({
@@ -194,5 +195,19 @@ Header.craft = {
     props: { text: 'Header', fontSize: '20px', textAlign: 'center', color: '#000000', fontWeight: 'normal', fontStyle: 'normal', tagName: 'p' },
     related: {
         settings: HeaderSettings
+    },
+    rules: {
+        canMoveIn: () => {
+            return true; // Allow any node to move in
+        },
+        canMoveOut: () => {
+            return true; // Allow any node to move out
+        },
+        canDrag: () => {
+            return true; // Allow dragging
+        },
+        canDrop: () => {
+            return true; // Allow dropping
+        }
     }
 };

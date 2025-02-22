@@ -1,8 +1,9 @@
 "use client";
 import React, { useRef, useEffect } from "react";
 import { useNode } from "@craftjs/core";
+import { ThreeColumnContainer } from "./user/gridlayouts/ThreeColumnContainer";
 
-export const Container = ({ background, padding = 0, margin = 0, layout = "flex", children }) => {
+export const MainContainer = ({ background, padding = 0, margin = 0, layout = "flex", children }) => {
     const { connectors: { connect, drag }, actions: { setProp } } = useNode();
     const ref = useRef(null);
 
@@ -21,18 +22,18 @@ export const Container = ({ background, padding = 0, margin = 0, layout = "flex"
         <div
             ref={ref}
             style={{ background, padding: `${padding}px`, margin: `${margin}px` }}
-            className={`border-dotted border-2 min-h-[100px] relative ${layoutClass}`}
+            className={`border-dotted border-2 h-[95vh] relative ${layoutClass}`}
         >
             {children}
         </div>
     );
 };
 
-export const ContainerSettings = () => {
+export const MainContainerSettings = () => {
     const { actions: { setProp }, background, padding, margin, layout } = useNode((node) => ({
         background: node.data.props.background,
-        padding: node.data.props.padding || 0,
-        margin: node.data.props.margin || 0,
+        padding: node.data.props.padding,
+        margin: node.data.props.margin,
         layout: node.data.props.layout
     }));
 
@@ -80,26 +81,19 @@ export const ContainerSettings = () => {
     );
 };
 
-Container.craft = {
+MainContainer.craft = {
     related: {
-        settings: ContainerSettings
-    },
-    props: {
-        padding: 0, // Ensure default padding is set to 0
-        margin: 0, // Ensure default margin is set to 0
+        settings: MainContainerSettings
     },
     rules: {
         canMoveIn: () => {
             return true; // Allow any node to move in
         },
-        canMoveOut: () => {
-            return true; // Allow any node to move out
-        },
         canDrag: () => {
-            return true; // Allow dragging
+            return false;
         },
-        canDrop: () => {
-            return true; // Allow dropping
+        canDrop: (incomingNode) => {
+            return incomingNode.data.type === Container || ThreeColumnContainer;
         }
     }
 };

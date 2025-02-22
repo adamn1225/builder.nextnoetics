@@ -3,24 +3,6 @@ import React, { useRef, useEffect } from "react";
 import { useNode, Element } from "@craftjs/core";
 import { Container } from "../Container";
 
-export const ColumnTwo = ({ children }) => {
-    const { connectors: { connect, drag } } = useNode();
-    return (
-        <div ref={(ref) => connect(drag(ref))} className="border-2 border-dashed border-gray-300 p-2">
-            {children}
-        </div>
-    );
-};
-
-ColumnTwo.craft = {
-    rules: {
-        canMoveIn: (incomingNodes) => {
-            // Allow any type of node to be moved in
-            return true;
-        }
-    }
-};
-
 export const TwoColumnContainer = ({ background, padding = 0, borderColor = 'gray-400', height = '', gap = '4', layout = 'grid' }) => {
     const { connectors: { connect, drag } } = useNode();
     const ref = useRef(null);
@@ -42,11 +24,11 @@ export const TwoColumnContainer = ({ background, padding = 0, borderColor = 'gra
             style={{ background, padding: `${padding}px`, borderColor, height: height || 'auto' }}
             className={`m-2 border-dotted border-2 w-full ${layoutClass}`}
         >
-            <Element is={ColumnTwo} id="column1" canvas>
-                <Container background={background} padding={padding} />
+            <Element is={Container} id="column1" background={background} padding={padding} canvas>
+                {/* Add content here */}
             </Element>
-            <Element is={ColumnTwo} id="column2" canvas>
-                <Container background={background} padding={padding} />
+            <Element is={Container} id="column2" background={background} padding={padding} canvas>
+                {/* Add content here */}
             </Element>
         </div>
     );
@@ -96,6 +78,10 @@ export const TwoColumnContainerSettings = () => {
 
 TwoColumnContainer.craft = {
     related: {
-        settings: {TwoColumnContainerSettings}
+        settings: TwoColumnContainerSettings
+    },
+    rules: {
+        canMoveOut: (incomingNodes) => incomingNodes.every(incomingNode => incomingNode.data.type === Container),
+        canMoveIn: (incomingNodes) => incomingNodes.every(incomingNode => incomingNode.data.type === Container),
     }
 };

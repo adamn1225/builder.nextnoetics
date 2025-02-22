@@ -3,24 +3,6 @@ import React, { useRef, useEffect } from "react";
 import { useNode, Element } from "@craftjs/core";
 import { Container } from "../Container";
 
-export const Column = ({ children }) => {
-    const { connectors: { connect, drag } } = useNode();
-    return (
-        <div ref={(ref) => connect(drag(ref))} className="border-2 border-dashed border-gray-300 p-2">
-            {children}
-        </div>
-    );
-};
-
-Column.craft = {
-    rules: {
-        canMoveIn: (incomingNodes) => {
-            // Allow any type of node to be moved in
-            return true;
-        }
-    }
-};
-
 export const ThreeColumnContainer = ({ background, padding = 0, borderColor = 'gray-400', height = '', gap = '4', layout = 'grid' }) => {
     const { connectors: { connect, drag } } = useNode();
     const ref = useRef(null);
@@ -42,14 +24,14 @@ export const ThreeColumnContainer = ({ background, padding = 0, borderColor = 'g
             style={{ background, padding: `${padding}px`, borderColor, height: height || 'auto' }}
             className={`m-2 border-dotted border-2 w-full ${layoutClass}`}
         >
-            <Element is={Column} id="column1" canvas>
-                <Container background={background} padding={padding} />
+            <Element is={Container} id="column1" background={background} padding={padding} canvas>
+                <span className="w-full h-fit"></span>
             </Element>
-            <Element is={Column} id="column2" canvas>
-                <Container background={background} padding={padding} />
+            <Element is={Container} id="column2" background={background} padding={padding} canvas>
+                {/* Add content here */}
             </Element>
-            <Element is={Column} id="column3" canvas>
-                <Container background={background} padding={padding} />
+            <Element is={Container} id="column3" background={background} padding={padding} canvas>
+                {/* Add content here */}
             </Element>
         </div>
     );
@@ -102,7 +84,7 @@ ThreeColumnContainer.craft = {
         settings: ThreeColumnContainerSettings
     },
     rules: {
-        canMoveOut: (incomingNodes) => incomingNodes.every(incomingNode => incomingNode.data.type === Element && incomingNode.data.type === Column && incomingNode.data.type === Container),
-        canMoveIn: (incomingNodes) => incomingNodes.every(incomingNode => incomingNode.data.type === Container)
+        canMoveOut: (incomingNodes) => incomingNodes.every(incomingNode => incomingNode.data.type === Container),
+        canMoveIn: (incomingNodes) => incomingNodes.every(incomingNode => incomingNode.data.type === Container),
     }
 };

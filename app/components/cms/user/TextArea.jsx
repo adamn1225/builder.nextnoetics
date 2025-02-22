@@ -175,6 +175,20 @@ TextArea.craft = {
         settings: TextAreaSettings
     },
     rules: {
-        canDrag: () => true
-    }
+        canMoveIn: () => {
+            return true; // Allow any node to move in
+        },
+        canMoveOut: () => {
+            return true; // Allow any node to move out
+        },
+        canDrag: () => {
+            return true; // Allow dragging
+        },
+        canDrop: () => {
+            return true; // Allow dropping
+        },
+        canCopy: () => {
+            return true; // Allow copying
+        }
+    },
 };

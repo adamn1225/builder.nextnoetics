@@ -17,22 +17,11 @@ export const CardTop = ({ children }) => {
 
 CardTop.craft = {
     rules: {
-        canMoveIn: (incomingNodes) => incomingNodes.every(incomingNode => incomingNode.data.type === Text || incomingNode.data.type === TextArea)
-    }
-};
-
-export const CardBottom = ({ children }) => {
-    const { connectors: { connect } } = useNode();
-    return (
-        <div ref={connect}>
-            {children}
-        </div>
-    );
-};
-
-CardBottom.craft = {
-    rules: {
-        canMoveIn: (incomingNodes) => incomingNodes.every(incomingNode => incomingNode.data.type === Button)
+        canMoveIn: (incomingNodes) => incomingNodes.every(incomingNode => 
+            incomingNode.data.type === Header || 
+            incomingNode.data.type === TextArea || 
+            incomingNode.data.type === Button
+        )
     }
 };
 
@@ -40,16 +29,14 @@ export const Card = ({ background, padding = 20 }) => {
     return (
         <Container background={background} padding={padding}>
             <Element is={CardTop} id="card-top" canvas>
-                <div className="flex flex-col gap-1">
-                    <Header text="Title" fontSize={20} />
-                    <Header text="Subtitle" fontSize={15} />
-                    <TextArea text="Description" fontSize={12} />
-                </div>
-            </Element>
-            <Element is={CardBottom} id="card-bottom" canvas>
+                <Header text="Title" fontSize={20} />
+                <Header text="Subtitle" fontSize={15} />
+                <TextArea text="Small excerpt about your services" fontSize={18} />
+                <Container padding={5} height={5} background="#fff">
                 <Button size="small" variant="contained" color="primary">
-                    Learn more
-                </Button>
+                        Learn more
+                    </Button>
+            </Container>
             </Element>
         </Container>
     );
@@ -58,5 +45,16 @@ export const Card = ({ background, padding = 20 }) => {
 Card.craft = {
     related: {
         settings: ContainerSettings
+    },
+    rules: {
+        canMoveIn: () => {
+            return true; // Allow any node to move in
+        },
+        canDrag: () => {
+            return true;
+        },
+        canDrop: () => {
+            return true;
+         }
     }
 };
