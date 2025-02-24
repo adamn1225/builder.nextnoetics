@@ -42,15 +42,15 @@ export const Post = ({ background, padding = 0, borderColor = 'gray-400', height
         <div
         ref={ref}
         style={{ background, padding: `${padding}px`, borderColor, height: height || 'min-content' }}
-        className={`m-2 border-dotted border-2 w-full ${layoutClass}`}
+        className={` border-dotted border-2 w-full ${layoutClass}`}
     >            <Element is={Header} text="Company Logo"  id="title" background={background} fontSize={20} canvas>
                   <Header text="Company Logo" fontSize={20} canvas />
                 </Element>
                 <Element is={Header} text="Subtitle" id="subtitle" background={background} fontSize={15} canvas>
                 <Header text="Subtitle" fontSize={15} canvas />
                 </Element>
-                <Element is={ImageUpload} id="image" src="/default-image.jpg" alt="Default Image" canvas>
-                <ImageUpload src="/default-image.jpg" alt="Default Image" />
+                <Element is={Container} id="image" canvas>
+                <ImageUpload src="/default-image.jpg" width={1200} height={500} alt="Default Image" />
                 </Element>
             </div>
     );
@@ -76,7 +76,7 @@ export const PostSettings = () => {
             </div>
             <div className="flex flex-col gap-2 mb-2">
                 <label className="block text-sm font-medium text-gray-100">Height</label>
-                <input type="text" value={height || ''} onChange={(e) => setProp((props) => props.height = e.target.value || 'auto')} className="w-full h-6 border border-gray-300 rounded-md" />
+                <input type="text" value={height} onChange={(e) => setProp((props) => props.height = e.target.value || 'auto')} className="w-full h-6 border border-gray-300 rounded-md" />
             </div>
             <div className="flex flex-col gap-2 mb-2">
                 <label className="block text-sm font-medium text-gray-100">Gap</label>

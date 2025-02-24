@@ -3,7 +3,7 @@ import React, { useRef, useEffect } from "react";
 import Image from 'next/image';
 import { useNode } from "@craftjs/core";
 
-export const ImageUpload = ({ src = '/default-image.jpg', alt = 'Default Image', width = 300, height = 200, objectFit = 'cover', objectPosition = 'center', children }) => {
+export const ImageUpload = ({ src = '/default-image.jpg', alt = 'Default Image', width = '100%', height = 'auto', objectFit = 'cover', objectPosition = 'center', children }) => {
     const { connectors: { connect, drag } } = useNode();
     const ref = useRef(null);
 
@@ -16,7 +16,7 @@ export const ImageUpload = ({ src = '/default-image.jpg', alt = 'Default Image',
     return (
         <div
             ref={ref}
-            style={{ width: `${width}px`, height: `${height}px` }}
+            style={{ width, height }}
             className="relative overflow-hidden"
         >
             <Image
@@ -44,41 +44,41 @@ export const ImageUploadSettings = () => {
     }));
 
     return (
-        <div className="mt-2">
-            <form className="flex flex-col space-y-2 w-fit border border-gray-200 p-2 rounded-md bg-white">
+        <div className="mt-2 flex justify-center">
+            <form className="flex flex-col space-y-2 w-fit border border-gray-200 p-2 rounded-md bg-gray-950 text-gray-50">
                 <label className="font-semibold text-sm underline">Image URL</label>
                 <input
                     type="text"
                     value={src}
                     onChange={(e) => setProp((props) => props.src = e.target.value)}
-                    className="w-full"
+                    className="w-full text-gray-950"
                 />
                 <label className="font-semibold text-sm underline">Alt Text</label>
                 <input
                     type="text"
                     value={alt}
                     onChange={(e) => setProp((props) => props.alt = e.target.value)}
-                    className="w-full"
+                    className="w-full text-gray-950"
                 />
-                <label className="font-semibold text-sm underline">Width (px)</label>
+                <label className="font-semibold text-sm underline">Width</label>
                 <input
-                    type="number"
+                    type="text"
                     value={width}
-                    onChange={(e) => setProp((props) => props.width = parseInt(e.target.value))}
-                    className="w-full"
+                    onChange={(e) => setProp((props) => props.width = e.target.value)}
+                    className="w-full text-gray-950"
                 />
-                <label className="font-semibold text-sm underline">Height (px)</label>
+                <label className="font-semibold text-sm underline">Height</label>
                 <input
-                    type="number"
+                    type="text"
                     value={height}
-                    onChange={(e) => setProp((props) => props.height = parseInt(e.target.value))}
-                    className="w-full"
+                    onChange={(e) => setProp((props) => props.height = e.target.value)}
+                    className="w-full text-gray-950"
                 />
                 <label className="font-semibold text-sm underline">Object Fit</label>
                 <select
                     value={objectFit}
                     onChange={(e) => setProp((props) => props.objectFit = e.target.value)}
-                    className="w-full"
+                    className="w-full text-gray-950"
                 >
                     <option value="cover">Cover</option>
                     <option value="contain">Contain</option>
@@ -87,7 +87,7 @@ export const ImageUploadSettings = () => {
                 <select
                     value={objectPosition}
                     onChange={(e) => setProp((props) => props.objectPosition = e.target.value)}
-                    className="w-full"
+                    className="w-full text-gray-950"
                 >
                     <option value="left">Left</option>
                     <option value="center">Center</option>
@@ -99,7 +99,7 @@ export const ImageUploadSettings = () => {
 };
 
 ImageUpload.craft = {
-    props: { src: '/default-image.jpg', alt: 'Default Image', width: 300, height: 200, objectFit: 'cover', objectPosition: 'center' },
+    props: { src: '/default-image.jpg', alt: 'Default Image', width: '100%', height: 'auto', objectFit: 'cover', objectPosition: 'center' },
     related: {
         settings: ImageUploadSettings
     }
