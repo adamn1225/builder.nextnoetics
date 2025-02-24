@@ -69,7 +69,7 @@ export const ImageUploadSettings = () => {
             onChange={(e) => setProp((props) => props.alt = e.target.value)}
             className="w-full text-gray-950"
           />
-          <label className="font-semibold text-sm underline text-white text-white">Object Fit</label>
+          <label className="font-semibold text-sm underline text-white">Object Fit</label>
           <select
             value={objectFit}
             onChange={(e) => setProp((props) => props.objectFit = e.target.value)}
