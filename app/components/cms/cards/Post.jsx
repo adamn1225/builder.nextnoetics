@@ -5,6 +5,7 @@ import { Container, ContainerSettings } from "../user/Container";
 import { TextArea, TextAreaSettings } from "../user/TextArea";
 import { Header, HeaderSettings } from "../user/Header";
 import { ImageUpload } from "../user/ImageUpload";
+import { IconsComponent } from "../cards/IconsComponent";
 
 export const PostTop = ({ children }) => {
     const { connectors: { connect } } = useNode();
@@ -43,15 +44,10 @@ export const Post = ({ background, padding = 0, borderColor = 'gray-400', height
         ref={ref}
         style={{ background, padding: `${padding}px`, borderColor, height: height || 'min-content' }}
         className={` border-dotted border-2 w-full ${layoutClass}`}
-    >            <Element is={Header} text="Company Logo"  id="title" background={background} fontSize={20} canvas>
-                  <Header text="Company Logo" fontSize={20} canvas />
-                </Element>
-                <Element is={Header} text="Subtitle" id="subtitle" background={background} fontSize={15} canvas>
-                <Header text="Subtitle" fontSize={15} canvas />
-                </Element>
-                <Element is={Container} id="image" canvas>
-                <ImageUpload src="/default-image.jpg" width={1200} height={500} alt="Default Image" />
-                </Element>
+    >            <Element is={Header} text="Company Logo"  id="title" background={background} fontSize={20} canvas />
+                <Element is={Header} text="Subtitle" fontSize={15} id="subtitle" background={background} canvas />
+                <Element is={ImageUpload} id="image"  width="object-fit" height={500} alt="Default Image" canvas />
+                <Element is={IconsComponent} id="icon" icon="BeakerIcon" canvas />
             </div>
     );
 };
@@ -97,9 +93,10 @@ Post.craft = {
         settings: PostSettings
     },
     rules: {
-        canMoveOut: (incomingNodes) => incomingNodes.every(incomingNode => incomingNode.data.type === PostTop),
-        canMoveIn: (incomingNodes) => incomingNodes.every(incomingNode => incomingNode.data.type === PostTop),
+        canDrop: () => true,
         canDrag: () => true,
-        canDrop: () => true
-    }
+        canMoveIn: () => true,
+        canMoveOut: () => true
+    },
+    isCanvas: true
 };

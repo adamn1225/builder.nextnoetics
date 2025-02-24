@@ -27,7 +27,6 @@ export default function App() {
               <Frame>
                 <Element is={CardsContainer} padding={5} background="#fff" canvas>
                   <Post />
-                  <IconsComponent icon="BeakerIcon" iconSize={64} iconColor="#000" />
                 </Element>
               </Frame>
             </div>

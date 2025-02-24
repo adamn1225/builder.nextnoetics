@@ -86,14 +86,10 @@ CardsContainer.craft = {
         settings: CardsContainerSettings
     },
     rules: {
-        canMoveIn: () => {
-            return true; // Allow any node to move in
-        },
-        canDrag: () => {
-            return false;
-        },
-        canDrop: () => {
-            return true;
-        },
-    }
+        canDrop: () => true,
+        canDrag: () => true,
+        canMoveIn: () => true,
+        canMoveOut: () => true
+      },
+      isCanvas: true
 };
