@@ -92,8 +92,8 @@ CardsContainer.craft = {
         canDrag: () => {
             return false;
         },
-        canDrop: (incomingNode) => {
-            return incomingNode.data.type === Container || ThreeColumnContainer;
-        }
+        canDrop: () => {
+            return true;
+        },
     }
 };

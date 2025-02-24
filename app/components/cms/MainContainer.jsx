@@ -93,7 +93,7 @@ MainContainer.craft = {
             return false;
         },
         canDrop: (incomingNode) => {
-            return incomingNode.data.type === Container || ThreeColumnContainer;
+            return incomingNode.data.type === Container || ThreeColumnContainer || CardsContainer || Icons;
         }
     }
 };
