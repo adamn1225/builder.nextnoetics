@@ -8,7 +8,7 @@ import { IconsComponent } from "../cards/IconsComponent";
 export const PostTop = ({ children }) => {
     const { connectors: { connect } } = useNode();
     return (
-        <div ref={connect} className="text-only">
+        <div ref={connect} className="text-only flex flex-col gap-10">
             {children}
         </div>
     );
@@ -23,8 +23,8 @@ PostTop.craft = {
     }
 };
 
-export const Post = ({children, background, padding = 0, borderColor = 'gray-400', height = '', gap = '4' }) => {
-    const { connectors: { connect, drag }, actions: { setProp } } = useNode();
+export const Post = ({background, padding = 0, borderColor = 'gray-400', height = '' }) => {
+    const { connectors: { connect, drag } } = useNode();
     const ref = useRef(null);
 
     useEffect(() => {
@@ -34,17 +34,18 @@ export const Post = ({children, background, padding = 0, borderColor = 'gray-400
     }, [connect, drag]);
 
     return (    
-      <div
+        <div
         ref={ref}
         style={{ background, padding: `${padding}px`, borderColor, height: height || 'min-content', maxWidth: '1200px', maxHeight: '628px', position: 'relative' }}
-        className={` w-full`}
-      >           
+        className={`w-full`}
+      >                   
         <span flex className="flex flex-col justify-center items-start gap-10">
-            <span className="text-white"><Element is={Header} text="Company Logo" id="title" background={background} fontSize={28}/></span>
-           <span> <Element is={Header} text="Subtitle" fontSize={20} id="subtitle" background={background}/></span>
+         <span className="text-white"><Element is={Header} text="Company Logo" id="title" background={background} fontSize={28}/>
+         </span>
+           <span> 
+            <Element is={Header} text="Subtitle" fontSize={20} id="subtitle" background={background}/></span>
         </span>
-        <Element is={ImageUpload} id="image" width={500} height={500} alt="" canvas style={{ position: 'absolute', bottom: '10px', left: '10px' }} />
-        {children}
+        <Element is={ImageUpload} id="image" width={1200} height={628} alt="" canvas style={{ position: 'absolute', bottom: '10px', left: '10px' }} />
       </div>
     );
 };

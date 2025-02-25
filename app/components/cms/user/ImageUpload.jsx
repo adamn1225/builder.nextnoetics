@@ -11,9 +11,9 @@ export const ImageUpload = ({ src = '/default-image.jpg', alt = '', width = '100
 
   useEffect(() => {
     if (ref.current) {
-      connect(ref.current);
+      connect(drag(ref.current));
     }
-  }, [connect]);
+  }, [connect, drag]);
 
   const onResizeStop = (e, direction, ref, delta, position) => {
     setProp(props => {
@@ -42,7 +42,7 @@ export const ImageUpload = ({ src = '/default-image.jpg', alt = '', width = '100
           className="absolute inset-0"
           style={{ backgroundColor: overlayColor, opacity: overlayOpacity, zIndex: 1 }}
         />
-        <div className="absolute inset-0 z-10">
+        <div className="absolute inset-0 z-20">
           {children}
         </div>
       </div>
@@ -210,6 +210,5 @@ ImageUpload.craft = {
     canDrag: () => true,
     canMoveIn: () => true,
     canMoveOut: () => true
-  },
-  isCanvas: true,
+  }
 };
