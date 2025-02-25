@@ -23,7 +23,7 @@ export const CardsContainer = ({ background, padding = 0, margin = 0, layout = "
   return (
     <div
       ref={ref}
-      style={{ background, padding: `${padding}px`, margin: `${margin}px`, height: 'auto', overflow: 'hidden' }}
+      style={{ background, padding: `${padding}px`, margin: `${margin}px`, height: '500px', width: '500px', overflow: 'hidden' }}
       className={`border-dotted border-2 relative ${layoutClass}`}
     >
       {children}

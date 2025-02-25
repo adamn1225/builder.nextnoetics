@@ -1,39 +1,52 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
-import { Link2, Link2Off } from 'lucide-react';
-import { useNode, Element } from "@craftjs/core";
+import { Rnd } from "react-rnd";
+import { useNode } from "@craftjs/core";
 import FetchImages from './FetchImages';
+import { Link2, Link2Off } from 'lucide-react';
 
 export const ImageUpload = ({ src = '/default-image.jpg', alt = '', width = '100%', height = 'auto', objectFit = 'cover', objectPosition = 'center', overlayColor = 'transparent', overlayOpacity = 0.4, children }) => {
-  const { connectors: { connect, drag } } = useNode();
+  const { connectors: { connect, drag }, actions: { setProp } } = useNode();
   const ref = useRef(null);
 
   useEffect(() => {
     if (ref.current) {
-      connect(drag(ref.current));
+      connect(ref.current);
     }
-  }, [connect, drag]);
+  }, [connect]);
+
+  const onResizeStop = (e, direction, ref, delta, position) => {
+    setProp(props => {
+      props.width = ref.style.width;
+      props.height = ref.style.height;
+    });
+  };
 
   return (
-    <div
-      ref={ref}
-      style={{ width, height }}
-      className="relative overflow-hidden"
+    <Rnd
+      size={{ width, height }}
+      onResizeStop={onResizeStop}
+      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}
     >
-      <img
-        src={src || '/default-image.jpg'}
-        alt={alt}
-        style={{ width: '100%', height: '100%', objectFit, objectPosition }}
-        className="z-0"
-      />
       <div
-        className="absolute inset-0"
-        style={{ backgroundColor: overlayColor, opacity: overlayOpacity, zIndex: 1 }}
-      />
-      <div className="absolute inset-0 z-10">
-        {children}
+        ref={ref}
+        style={{ width: '100%', height: '100%', position: 'relative' }}
+      >
+        <img
+          src={src || '/default-image.jpg'}
+          alt={alt}
+          style={{ width: '100%', height: '100%', objectFit, objectPosition }}
+          className="z-0"
+        />
+        <div
+          className="absolute inset-0"
+          style={{ backgroundColor: overlayColor, opacity: overlayOpacity, zIndex: 1 }}
+        />
+        <div className="absolute inset-0 z-10">
+          {children}
+        </div>
       </div>
-    </div>
+    </Rnd>
   );
 };
 
@@ -188,7 +201,7 @@ export const ImageUploadSettings = () => {
 };
 
 ImageUpload.craft = {
-  props: { src: '/default-image.jpg', alt: '', width: '100%', height: 'auto', objectFit: 'cover', objectPosition: 'center', overlayColor: '#000', overlayOpacity: 0.4 },
+  props: { src: '/default-image.jpg', alt: '', width: '800px', height: '300px', objectFit: 'cover', objectPosition: 'center', overlayColor: '#000', overlayOpacity: 0.4 },
   related: {
     settings: ImageUploadSettings
   },
@@ -198,5 +211,5 @@ ImageUpload.craft = {
     canMoveIn: () => true,
     canMoveOut: () => true
   },
-  isCanvas: true
+  isCanvas: true,
 };

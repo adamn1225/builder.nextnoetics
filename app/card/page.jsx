@@ -22,12 +22,12 @@ const CardPage = () => {
   return (
     <div className='w-full h-screen flex'>
       <div className="w-full h-screen flex">
-        <Editor resolver={{ Post, Button, Header, ImageUploadSettings, ImageUpload, Container, PostTop, TwoColumnContainer, ThreeColumnContainerSettings, TextArea, ThreeColumnContainer, TwoColumnContainerSettings, OneColumnContainer, OneColumnContainerSettings, CardsContainer, MainContainerSettings, ButtonSettings, CardSettings,  IconsComponent, IconsSettings }}>
-          <div className="w-4/5 h-screen flex">
-            <div className="w-full h-full px-20 mt-12 lg:mb-0">
+        <Editor resolver={{ Post, Button, Header, ImageUploadSettings, ImageUpload, Container, PostTop, TwoColumnContainer, ThreeColumnContainerSettings, TextArea, ThreeColumnContainer, TwoColumnContainerSettings, OneColumnContainer, OneColumnContainerSettings, CardsContainer, MainContainerSettings, ButtonSettings, CardSettings, IconsComponent, IconsSettings }}>
+          <div className="w-full h-screen">
+            <div className="w-4/5 h-full flex justify-center mt-20 lg:mb-0">
               <Frame>
                 <Element is={CardsContainer} padding={5} background="#fff" canvas>
-                  <Element is={Post} padding={5} background={"fff"} />
+                  <Element is={Post} padding={5} background={"fff"} layout="flex-row" />
                 </Element>
               </Frame>
             </div>

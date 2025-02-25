@@ -4,29 +4,41 @@ import { useNode } from "@craftjs/core";
 import ContentEditable from 'react-contenteditable';
 import { Slider } from '@mui/material';
 import { AlignCenter, AlignLeft, AlignRight } from 'lucide-react';
-import { rule } from "postcss";
+import { Rnd } from "react-rnd";
 
 export const Header = ({ text, fontSize, textAlign, color, fontWeight, fontStyle, tagName }) => {
     const { connectors: { connect, drag }, hasSelectedNode, actions: { setProp } } = useNode((state) => ({
         hasSelectedNode: state.events.selected,
     }));
 
+    const onResizeStop = (e, direction, ref, delta, position) => {
+        setProp(props => {
+            props.width = ref.style.width;
+            props.height = ref.style.height;
+        });
+    };
+
     return (
-        <div
-            ref={ref => { if (ref) connect(drag(ref)); }}
-            style={{ fontSize, textAlign, color, fontWeight, fontStyle }}
+        <Rnd
+            onResizeStop={onResizeStop}
+            style={{ zIndex: 1 }}
         >
-            <ContentEditable
-                html={text}
-                onChange={e =>
-                    setProp((props) =>
-                        props.text = e.target.value.replace(/<\/?[^>]+(>|$)/g, "")
-                    )
-                }
-                tagName={tagName}
-                style={{ fontSize, textAlign, color, fontWeight, fontStyle, border: '', padding: '0 4px' }}
-            />
-        </div>
+            <div
+                ref={ref => { if (ref) connect(drag(ref)); }}
+                style={{ fontSize, textAlign, color, fontWeight, fontStyle }}
+            >
+                <ContentEditable
+                    html={text}
+                    onChange={e =>
+                        setProp((props) =>
+                            props.text = e.target.value.replace(/<\/?[^>]+(>|$)/g, "")
+                        )
+                    }
+                    tagName={tagName}
+                    style={{ fontSize, textAlign, color, fontWeight, fontStyle, border: '', padding: '0 4px' }}
+                />
+            </div>
+        </Rnd>
     )
 };
 
@@ -192,7 +204,7 @@ const HeaderSettings = () => {
 };
 
 Header.craft = {
-    props: { text: 'Header', fontSize: '20px', textAlign: 'center', color: '#000000', fontWeight: 'normal', fontStyle: 'normal', tagName: 'p' },
+    props: { text: 'Header', fontSize: '20px', textAlign: 'center', color: '#fff', fontWeight: 'normal', fontStyle: 'normal', tagName: 'p' },
     related: {
         settings: HeaderSettings
     },
