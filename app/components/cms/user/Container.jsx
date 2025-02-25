@@ -101,5 +101,6 @@ Container.craft = {
         canDrop: () => {
             return true; // Allow dropping
         }
-    }
+    },
+    isCanvas: true
 };

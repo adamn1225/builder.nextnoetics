@@ -24,7 +24,7 @@ export const SettingsPanel = () => {
     console.log('Selected component:', selected);
 
     return selected ? (
-        <div className="bg-gray-950 mt-2 px-2">
+        <div className="bg-gray-950 px-2">
             <div className="flex flex-col space-y-2">
 
                 <div className='border border-gray-200 px-6 py-3 shadow-md shadow-secondary'>

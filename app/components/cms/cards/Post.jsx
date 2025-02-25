@@ -1,9 +1,7 @@
 "use client";
 import React, { useRef, useEffect } from "react";
 import { Element, useNode } from "@craftjs/core";
-import { Container, ContainerSettings } from "../user/Container";
-import { TextArea, TextAreaSettings } from "../user/TextArea";
-import { Header, HeaderSettings } from "../user/Header";
+import { Header } from "../user/Header";
 import { ImageUpload } from "../user/ImageUpload";
 import { IconsComponent } from "../cards/IconsComponent";
 
@@ -25,7 +23,7 @@ PostTop.craft = {
     }
 };
 
-export const Post = ({ background, padding = 0, borderColor = 'gray-400', height = '', gap = '4', layout = 'grid' }) => {
+export const Post = ({children, background, padding = 0, borderColor = 'gray-400', height = '', gap = '4', layout = 'grid' }) => {
     const { connectors: { connect, drag } } = useNode();
     const ref = useRef(null);
 
@@ -40,15 +38,19 @@ export const Post = ({ background, padding = 0, borderColor = 'gray-400', height
     : "flex flex-col gap-2";
 
     return (    
-        <div
-        ref={ref}
-        style={{ background, padding: `${padding}px`, borderColor, height: height || 'min-content' }}
-        className={` border-dotted border-2 w-full ${layoutClass}`}
-    >            <Element is={Header} text="Company Logo"  id="title" background={background} fontSize={28} canvas />
-                <Element is={Header} text="Subtitle" fontSize={20} id="subtitle" background={background} canvas />
-                <Element is={ImageUpload} id="image"  width="object-fit" height={500} alt="" canvas />
-                <Element is={IconsComponent} id="icon" icon="BeakerIcon" canvas />
-            </div>
+      <>
+            <div
+            ref={ref}
+            style={{ background, padding: `${padding}px`, borderColor, height: height || 'min-content' }}
+            className={` border-dotted border-2 w-full ${layoutClass}`}
+        >           
+             <Element is={Header} text="Company Logo"  id="title" background={background} fontSize={28} canvas />
+             <Element is={Header} text="Subtitle" fontSize={20} id="subtitle" background={background} canvas />
+             <Element is={ImageUpload} id="image"  width="object-fit" height={500} alt="" canvas />
+             <Element is={IconsComponent} id="icon" icon="BeakerIcon" canvas />
+             {children}
+         </div>
+      </>
     );
 };
 
@@ -83,7 +85,7 @@ export const PostSettings = () => {
 };
 
 Post.craft = {
-    displayName: "Card",
+    displayName: "Post",
     props: {
         background: "#fff",
         padding: 20,
