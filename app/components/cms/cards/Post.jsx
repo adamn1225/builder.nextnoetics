@@ -44,9 +44,9 @@ export const Post = ({ background, padding = 0, borderColor = 'gray-400', height
         ref={ref}
         style={{ background, padding: `${padding}px`, borderColor, height: height || 'min-content' }}
         className={` border-dotted border-2 w-full ${layoutClass}`}
-    >            <Element is={Header} text="Company Logo"  id="title" background={background} fontSize={20} canvas />
-                <Element is={Header} text="Subtitle" fontSize={15} id="subtitle" background={background} canvas />
-                <Element is={ImageUpload} id="image"  width="object-fit" height={500} alt="Default Image" canvas />
+    >            <Element is={Header} text="Company Logo"  id="title" background={background} fontSize={28} canvas />
+                <Element is={Header} text="Subtitle" fontSize={20} id="subtitle" background={background} canvas />
+                <Element is={ImageUpload} id="image"  width="object-fit" height={500} alt="" canvas />
                 <Element is={IconsComponent} id="icon" icon="BeakerIcon" canvas />
             </div>
     );

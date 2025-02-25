@@ -19,10 +19,10 @@ import { IconsComponent, IconsSettings } from '../components/cms/cards/IconsComp
 
 export default function App() {
   return (
-    <div className='w-full h-screen'>
-      <div className="pb-4 w-full h-screen">
+    <div className='w-full h-screen flex'>
+      <div className="w-full h-screen flex">
         <Editor resolver={{ Post, Button, Header, ImageUploadSettings, ImageUpload, Container, PostTop, TwoColumnContainer, ThreeColumnContainerSettings, TextArea, ThreeColumnContainer, TwoColumnContainerSettings, OneColumnContainer, OneColumnContainerSettings, CardsContainer, MainContainerSettings, ButtonSettings, CardSettings, IconsComponent, IconsSettings }}>
-          <div className="w-full h-full flex">
+          <div className="w-4/5 h-screen flex">
             <div className="w-full h-full px-20 mt-12 lg:mb-0">
               <Frame>
                 <Element is={CardsContainer} padding={5} background="#fff" canvas>
@@ -30,13 +30,11 @@ export default function App() {
                 </Element>
               </Frame>
             </div>
-            <div className="w-[20vw] max-w-[20vw] min-w-[20vw] bg-gray-950 h-[100vh]">
-              <div className='w-full flex flex-col items-center gap-1 bg-gray-950 h-screen'>
+          </div>
+            <div className='fixed right-0 z-10 w-[20vw] max-w-[20vw] min-w-[20vw] flex flex-col items-stretch gap-1 bg-gray-950 h-screen'>
                 <CardTools />
                 <SettingsPanel />
               </div>
-            </div>
-          </div>
         </Editor>
       </div>
     </div>

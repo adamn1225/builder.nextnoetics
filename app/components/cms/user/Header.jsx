@@ -24,7 +24,7 @@ export const Header = ({ text, fontSize, textAlign, color, fontWeight, fontStyle
                     )
                 }
                 tagName={tagName}
-                style={{ fontSize, textAlign, color, fontWeight, fontStyle, border: '1px solid #ddd', padding: '0 4px' }}
+                style={{ fontSize, textAlign, color, fontWeight, fontStyle, border: '', padding: '0 4px' }}
             />
         </div>
     )

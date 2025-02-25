@@ -13,7 +13,7 @@ const RootLayout = ({ children }) => {
         <SideNav />
         <div className="flex-1 flex flex-col h-screen">
           <TopNav />
-          <div className="flex-1 overflow-auto">
+          <div className="flex overflow-auto h-screen ">
             {children}
           </div>
         </div>
