@@ -1,6 +1,8 @@
 "use client";
 import React from 'react';
 import { Settings } from 'lucide-react';
+import SaveTemplate from './SaveTemplate';
+
 const TopNav = () => {
 
     return (

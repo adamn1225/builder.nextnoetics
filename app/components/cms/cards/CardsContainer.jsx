@@ -1,9 +1,6 @@
 "use client";
 import React, { useRef, useEffect } from "react";
 import { useNode } from "@craftjs/core";
-import { ImageUpload } from "../user/ImageUpload";
-import { Header } from "../user/Header";
-import { Container } from "../user/Container";
 
 export const CardsContainer = ({ background, padding = 0, margin = 0, layout = "flex", children }) => {
   const { connectors: { connect, drag } } = useNode();
@@ -15,16 +12,11 @@ export const CardsContainer = ({ background, padding = 0, margin = 0, layout = "
     }
   }, [connect, drag]);
 
-  // Conditional Tailwind classes for flex or grid layout
-  const layoutClass = layout === "grid"
-    ? "grid grid-cols-1 md:grid-cols-2 gap-2"
-    : "flex flex-col gap-2";
-
   return (
     <div
       ref={ref}
       style={{ background, padding: `${padding}px`, margin: `${margin}px`, height: '628px', width: '1200px', overflow: 'hidden' }}
-      className={`border-dotted border-2 relative ${layoutClass}`}
+      className={`border-dotted border-2 relative`}
     >
       {children}
     </div>
@@ -68,17 +60,6 @@ export const CardsContainerSettings = () => {
           className="w-full h-6 border border-gray-300 rounded-md" 
         />
       </div>
-      <div className="flex flex-col gap-2 mb-2">
-        <label className="block text-sm font-medium text-gray-100">Layout</label>
-        <select
-          value={layout}
-          onChange={(e) => setProp((props) => props.layout = e.target.value)}
-          className="w-full h-8 border border-gray-300 rounded-md"
-        >
-          <option value="grid">Grid</option>
-          <option value="flex">Flex Column</option>
-        </select>
-      </div>
     </div>
   );
 };
@@ -88,10 +69,10 @@ CardsContainer.craft = {
     settings: CardsContainerSettings
   },
   rules: {
-    canDrop: () => true, // Allow any node to be dropped into this container
-    canDrag: () => true, // Allow this container to be dragged
-    canMoveIn: () => true, // Allow any node to be moved into this container
-    canMoveOut: () => true // Allow any node to be moved out of this container
+    canDrop: () => true,
+    canDrag: () => true,
+    canMoveIn: () => true,
+    canMoveOut: () => true
   },
   isCanvas: true
 };
