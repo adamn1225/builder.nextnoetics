@@ -23,7 +23,7 @@ PostTop.craft = {
     }
 };
 
-export const Post = ({background, padding = 0, borderColor = 'gray-400', height = '' }) => {
+export const Post = ({background, padding = 0, borderColor = 'gray-400', height = 'auto', width = '800px' }) => {
     const { connectors: { connect, drag } } = useNode();
     const ref = useRef(null);
 
@@ -36,7 +36,7 @@ export const Post = ({background, padding = 0, borderColor = 'gray-400', height 
     return (    
         <div
         ref={ref}
-        style={{ background, padding: `${padding}px`, borderColor, height: height || 'min-content', maxWidth: '1200px', maxHeight: '628px', position: 'relative' }}
+        style={{ background, padding: `${padding}px`, borderColor, height, width, maxWidth: '1200px', maxHeight: '628px', position: 'relative' }}
         className={`w-full`}
       >                   
         <span flex className="flex flex-col justify-center items-start gap-10">
@@ -51,10 +51,11 @@ export const Post = ({background, padding = 0, borderColor = 'gray-400', height 
 };
 
 export const PostSettings = () => {
-    const { actions: { setProp }, background, padding, height, gap } = useNode((node) => ({
+    const { actions: { setProp }, background, padding, height, width, gap } = useNode((node) => ({
         background: node.data.props.background,
         padding: node.data.props.padding,
         height: node.data.props.height,
+        width: node.data.props.width,
         gap: node.data.props.gap
     }));
 
@@ -73,6 +74,10 @@ export const PostSettings = () => {
                 <input type="text" value={height} onChange={(e) => setProp((props) => props.height = e.target.value || 'auto')} className="w-full h-6 border border-gray-300 rounded-md" />
             </div>
             <div className="flex flex-col gap-2 mb-2">
+                <label className="block text-sm font-medium text-gray-100">Width</label>
+                <input type="text" value={width} onChange={(e) => setProp((props) => props.width = e.target.value || '800px')} className="w-full h-6 border border-gray-300 rounded-md" />
+            </div>
+            <div className="flex flex-col gap-2 mb-2">
                 <label className="block text-sm font-medium text-gray-100">Gap</label>
                 <input type="number" value={gap} onChange={(e) => setProp((props) => props.gap = e.target.value)} className="w-full h-6 border border-gray-300 rounded-md" />
             </div>
@@ -85,6 +90,8 @@ Post.craft = {
     props: {
         background: "#fff",
         padding: 20,
+        height: 'auto',
+        width: '800px',
         gap: 0
     },
     related: {

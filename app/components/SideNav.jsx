@@ -21,7 +21,7 @@ const SideNav = () => {
   const currentPath = usePathname();
  
   return (
-    <aside className={`bg-gray-950 h-screen pb-28 text-white transition-all duration-300 ${isCollapsed ? 'w-14' : 'w-36'} overflow-hidden relative`}>
+    <aside className={`relative z-50 bg-gray-950 h-screen pb-28 text-white transition-all duration-300 ${isCollapsed ? 'w-14' : 'w-36'} overflow-hidden relative z-50`}>
       {loading && (
         <div className="absolute top-0 left-0 w-full h-1 bg-blue-700 animate-pulse"></div>
       )}

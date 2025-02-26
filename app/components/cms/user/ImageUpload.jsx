@@ -66,7 +66,11 @@ export const ImageUploadSettings = () => {
   const [linkedDimensions, setLinkedDimensions] = useState(true);
 
   const handleSelectImage = (url) => {
-    setProp((props) => props.src = url);
+    setProp((props) => {
+      props.src = url;
+      props.width = 'auto';
+      props.height = 'auto';
+    });
     setShowImageLibrary(false);
   };
 
@@ -75,7 +79,11 @@ export const ImageUploadSettings = () => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setProp((props) => props.src = reader.result);
+        setProp((props) => {
+          props.src = reader.result;
+          props.width = 'auto';
+          props.height = 'auto';
+        });
       };
       reader.readAsDataURL(file);
     }
@@ -109,14 +117,16 @@ export const ImageUploadSettings = () => {
           onChange={(e) => setProp((props) => props.src = e.target.value)}
           className="w-full text-gray-950"
         />
-        <button
-          type="button"
-          onClick={() => setShowImageLibrary(!showImageLibrary)}
-          className="w-full bg-blue-500 text-white py-2 rounded"
-        >
-          {showImageLibrary ? 'Hide Image Library' : 'Show Image Library'}
-        </button>
+        <span className="text-gray-950">
+          <button
+            type="button"
+            onClick={() => setShowImageLibrary(!showImageLibrary)}
+            className="w-full bg-blue-500 text-white py-2 rounded"
+          >
+            {showImageLibrary ? 'Hide Image Library' : 'Show Image Library'}
+          </button>
         {showImageLibrary && <FetchImages onSelectImage={handleSelectImage} />}
+        </span>
         <label className="font-semibold text-sm underline">Upload Image</label>
         <input
           type="file"

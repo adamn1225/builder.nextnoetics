@@ -9,11 +9,11 @@ const RootLayout = ({ children }) => {
       <head>
         {/* Add any head elements here */}
       </head>
-      <body className="flex h-screen bg-gray-100 dark:bg-gray-800 overflow-x-hidden">
+      <body className="flex w-screen h-screen bg-gray-100 dark:bg-gray-800 overflow-x-hidden">
         <SideNav />
-        <div className="flex-1 flex flex-col h-screen">
+        <div className="flex-1 flex flex-col h-screen w-screen">
           <TopNav />
-          <div className="flex overflow-auto h-screen ">
+          <div className="flex overflow-auto h-screen w-full">
             {children}
           </div>
         </div>

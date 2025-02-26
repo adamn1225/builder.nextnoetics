@@ -48,7 +48,7 @@ export const CardTools = () => {
             <DraggableButton ref={ref => { if (ref) connectors.create(ref, <Header text="Header" />); }} className="p-2 btn-gradient rounded text-center">Text</DraggableButton>  
             <DraggableButton ref={ref => { if (ref) connectors.create(ref, <Container padding={0} background="#fff" canvas>{null}</Container>); }} className="p-2 btn-gradient rounded text-center">Container</DraggableButton>
             <DraggableButton ref={ref => { if (ref) connectors.create(ref, <ImageUpload src="/simple-blue.png"  alt="" width={200} height={200} overlayOpacity={0} />); }} className="p-2 btn-gradient rounded text-center">Image Upload</DraggableButton>
-            <DraggableButton ref={ref => { if (ref) connectors.create(ref, <IconsComponent icon="BeakerIcon" />); }} className="p-2 btn-gradient rounded text-center">Icon</DraggableButton>
+            <DraggableButton ref={ref => { if (ref) connectors.create(ref, <IconsComponent icon="BeakerIcon" width={64} height={64} />); }} className="p-2 btn-gradient rounded text-center">Icon</DraggableButton>
           </div>
         </>
       )}
