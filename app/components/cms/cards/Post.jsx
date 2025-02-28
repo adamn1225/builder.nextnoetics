@@ -88,7 +88,7 @@ export const PostSettings = () => {
 Post.craft = {
     displayName: "Post",
     props: {
-        background: "#fff",
+        background: "#b3b3b3",
         padding: 20,
         height: 'auto',
         width: '800px',

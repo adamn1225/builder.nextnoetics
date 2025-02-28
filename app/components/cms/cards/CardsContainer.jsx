@@ -65,6 +65,11 @@ export const CardsContainerSettings = () => {
 };
 
 CardsContainer.craft = {
+  props: {
+    background: '#b3b3b3',
+    padding: 0,
+    margin: 0
+  },
   related: {
     settings: CardsContainerSettings
   },

@@ -36,10 +36,10 @@ const CardPage = () => {
   };
 
   return (
-    <div className='w-full h-screen bg-gray-100 dark:bg-gray-800 overflow-x-hidden'>
+    <div className='w-full h-screen bg-white dark:bg-gray-800 overflow-x-hidden'>
       <Editor resolver={{ Post, Button, Header, ImageUploadSettings, ImageUpload, Container, PostTop, TwoColumnContainer, ThreeColumnContainerSettings, TextArea, ThreeColumnContainer, TwoColumnContainerSettings, OneColumnContainer, OneColumnContainerSettings, CardsContainer, MainContainerSettings, ButtonSettings, CardSettings, IconsComponent, IconsSettings }}>
    
-        <div className="grid grid-rows-[auto_1fr] grid-cols-2 justify-items-stretch h-full w-full mt-20 ml-10 lg:mb-0">
+        <div className="grid grid-cols-[3fr_1fr] h-full w-full ml-10 lg:mb-0">
           <div className='flex justify-center items-center h-full w-full'>
             <Frame>
               <Element is={CardsContainer} canvas>
