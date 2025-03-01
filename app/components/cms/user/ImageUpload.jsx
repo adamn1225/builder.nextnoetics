@@ -5,7 +5,7 @@ import { useNode } from "@craftjs/core";
 import FetchImages from './FetchImages';
 import { Link2, Link2Off } from 'lucide-react';
 
-export const ImageUpload = ({ src = '/chamber-crane.jpeg', alt = '', width = '100%', height = 'auto', objectFit = 'cover', objectPosition = 'center', overlayColor = 'transparent', overlayOpacity = 0.4, children }) => {
+export const ImageUpload = ({ src = '/chamber-crane.jpeg', alt = '', width = 'auto', height = 'auto', objectFit = 'contain', objectPosition = 'center', overlayColor = 'transparent', overlayOpacity = 0.4, children }) => {
   const { connectors: { connect, drag }, actions: { setProp } } = useNode();
   const ref = useRef(null);
 
@@ -211,7 +211,7 @@ export const ImageUploadSettings = () => {
 };
 
 ImageUpload.craft = {
-  props: { src: '/chamber-crane.jpeg', alt: '', width: '800px', height: '300px', objectFit: 'cover', objectPosition: 'center', overlayColor: '#000', overlayOpacity: 0.4 },
+  props: { src: '/chamber-crane.jpeg', alt: '', width: 'auto', height: 'auto', objectFit: 'contain', objectPosition: 'center', overlayColor: '#000', overlayOpacity: 0.4 },
   related: {
     settings: ImageUploadSettings
   },

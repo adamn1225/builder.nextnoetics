@@ -66,7 +66,7 @@ export const Topbar = () => {
     };
 
     return (
-        <div className="px-2 py-2 bg-gray-950 text-gray-100 w-full">
+        <div className="mb-2 py-2 bg-gray-950 text-gray-100 w-full">
             <div className="flex flex-col justify-center items-center gap-1">
                 <div className="flex-1">
                     <label className="flex items-center">
@@ -74,14 +74,14 @@ export const Topbar = () => {
                         <span>Enable JSON</span>
                     </label>
                 </div>
-                <div className="flex flex-wrap justify-center gap-1 text-gray-950">
                     <input
                         type="text"
                         placeholder="Template Name"
                         value={templateName}
                         onChange={(e) => setTemplateName(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded mb-2"
+                        className="w-fit p-2 border border-gray-300 rounded mb-2"
                     />
+                <div className="flex flex-wrap justify-center gap-1 text-gray-950">
                     <button
                         className="text-sm px-1 py-1 border border-primary text-primary hover:bg-gray-300 hover:text-zinc-800"
                         onClick={handleSaveTemplate}

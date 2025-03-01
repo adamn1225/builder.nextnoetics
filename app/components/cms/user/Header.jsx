@@ -204,7 +204,7 @@ const HeaderSettings = () => {
 };
 
 Header.craft = {
-    props: { text: 'Header', fontSize: '20px', textAlign: 'center', color: '#fff', fontWeight: 'normal', fontStyle: 'normal', tagName: 'p' },
+    props: { text: 'Header', fontSize: '20px', textAlign: 'center', color: '#fff', fontWeight: 'normal', fontStyle: 'normal', tagName: 'p', },
     related: {
         settings: HeaderSettings
     },

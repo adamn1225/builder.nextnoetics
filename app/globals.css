@@ -59,3 +59,16 @@ body {
 nextjs-portal {
   display: none;
 }
+
+/* Add this CSS to your stylesheet */
+.url-converter-sidebar {
+  position: relative;
+  top: 100px; /* Adjust this value as needed */
+  right: 20px; /* Adjust this value as needed */
+  width: 20vw !important; /* Adjust this value as needed */
+  max-width: 20vw !important; /* Adjust this value as needed */
+  min-width: 20vw !important; /* Adjust this value as needed */
+  background-color: #1a1a1a; /* Adjust this value as needed */
+  padding: 10px; /* Adjust this value as needed */
+  z-index: 1000; /* Ensure it is above other elements */
+}
