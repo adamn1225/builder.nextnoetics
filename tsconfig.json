@@ -21,14 +21,25 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "strictNullChecks": true
   },
   "paths": {
-    "@/*": ["app/*"],
-    "@components/*": ["app/components/*"],
-    "@cms/*": ["app/components/cms/*"],
-    "@user/*": ["app/components/cms/user/*"],
-    "@lib/*": ["lib/*"]
+    "@/*": [
+      "app/*"
+    ],
+    "@components/*": [
+      "app/components/*"
+    ],
+    "@cms/*": [
+      "app/components/cms/*"
+    ],
+    "@user/*": [
+      "app/components/cms/user/*"
+    ],
+    "@lib/*": [
+      "lib/*"
+    ]
   },
   "include": [
     "next-env.d.ts",

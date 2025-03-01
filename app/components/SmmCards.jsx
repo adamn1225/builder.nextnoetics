@@ -53,22 +53,22 @@ const SmmCards = () => {
   return (
     <div className='w-full h-screen bg-white dark:bg-gray-800 overflow-x-hidden'>
       <Editor resolver={{ Post, Button, Header, ImageUploadSettings, ImageUpload, Container, PostTop, TwoColumnContainer, ThreeColumnContainerSettings, TextArea, ThreeColumnContainer, TwoColumnContainerSettings, OneColumnContainer, OneColumnContainerSettings, FbContainerSettings, FbContainer, MainContainerSettings, ButtonSettings, CardSettings, IconsComponent, IconsSettings, IgContainer, IgContainerSettings, Post }} >
-        <UrlConverter onConvert={handleConvert} className="url-converter-sidebar" />
-        <div className="grid grid-cols-[3fr_1fr] h-full w-full ml-10 lg:mb-0">
-          <div className='flex justify-center items-normal mt-24 h-full w-full'>
+        <div className="grid grid-cols-[3fr_1fr] h-full w-full lg:mb-0">
+          <div className='flex justify-center items-normal h-full w-full'>
+            <UrlConverter onConvert={handleConvert} className="url-converter-sidebar" />
             {selectedCard === 'Facebook' && (
               <Frame>
                 <Element is={FbContainer} canvas>
-                  <Element is={Post} padding={15} background={"#fff"} containerType="facebook" h1={convertedData?.h1} h2={convertedData?.h2} img={convertedData?.img} />
+                  <Element is={Post} background={"#fff"} containerType="facebook" h1={convertedData?.h1} h2={convertedData?.h2} img={convertedData?.img} />
                 </Element>
               </Frame>
             )}
             {selectedCard === 'Instagram' && (
               <Frame>
-                <div className='flex justify-center items-center h-full w-full'>
-                  <div style={{ transform: 'scale(0.5)', transformOrigin: 'top left' }}>
+                <div className='flex justify-center items-start h-full w-full'>
+                  <div style={{ transform: 'scale(0.5)', transformOrigin: 'top' }}>
                     <Element is={IgContainer} canvas>
-                      <Element is={Post} padding={15} background={"#fff"} containerType="instagram" h1={convertedData?.h1} h2={convertedData?.h2} img={convertedData?.img} />
+                      <Element is={Post} background={"#fff"} containerType="instagram" h1={convertedData?.h1} h2={convertedData?.h2} img={convertedData?.img} />
                     </Element>
                   </div>
                 </div>
@@ -76,7 +76,7 @@ const SmmCards = () => {
             )}
           </div>
           <div className='fixed right-0 top-0 z-10 w-[20vw] max-w-[20vw] min-w-[20vw] bg-stone-900 h-full overflow-y-auto'>
-              <Topbar />
+            <Topbar />
             <div className='flex flex-col justify-center items-center gap-1 px-2 overflow-y-auto'>
               <h1 className='text-white text-2xl font-bold'>Social Media Card Types</h1>
               <select className='bg-white border border-gray-300 rounded-md p-2' value={selectedCard} onChange={(e) => handleCardChange(e.target.value)}>
