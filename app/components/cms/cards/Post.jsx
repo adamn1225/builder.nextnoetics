@@ -3,7 +3,6 @@ import React, { useRef, useEffect } from "react";
 import { Element, useNode } from "@craftjs/core";
 import { Header } from "../user/Header";
 import { ImageUpload } from "../user/ImageUpload";
-import { IconsComponent } from "../cards/IconsComponent";
 
 export const PostTop = ({ children }) => {
     const { connectors: { connect } } = useNode();
@@ -23,7 +22,7 @@ PostTop.craft = {
     }
 };
 
-export const Post = ({background, padding = 0, borderColor = 'gray-400', height = 'auto', width = '800px' }) => {
+export const Post = ({ background, padding = 0, borderColor = 'gray-400', height = 'auto', width = 'auto', containerType }) => {
     const { connectors: { connect, drag } } = useNode();
     const ref = useRef(null);
 
@@ -33,19 +32,33 @@ export const Post = ({background, padding = 0, borderColor = 'gray-400', height 
         }
     }, [connect, drag]);
 
+    const isFacebook = containerType === 'facebook';
+    const isInstagram = containerType === 'instagram';
+
+    const containerStyles = {
+        background,
+        padding: `${padding}px`,
+        borderColor,
+        height: isFacebook ? '628px' : '1080px',
+        width: isFacebook ? '1200px' : '1350px',
+        maxWidth: isFacebook ? '1200px' : '1350px',
+        maxHeight: isFacebook ? '628px' : '1080px',
+        position: 'relative'
+    };
+
     return (    
         <div
         ref={ref}
-        style={{ background, padding: `${padding}px`, borderColor, height, width, maxWidth: '1200px', maxHeight: '628px', position: 'relative' }}
+        style={containerStyles}
         className={`w-full`}
       >                   
         <span flex className="flex flex-col justify-center items-start gap-10">
-         <span className="text-white"><Element is={Header} text="Company Logo" id="title" background={background} fontSize={28}/>
+         <span className="text-white"><Element is={Header} text="Company Logo" id="title" background={background} fontSize={isFacebook ? 28 : 24}/>
          </span>
            <span> 
-            <Element is={Header} text="Subtitle" fontSize={20} id="subtitle" background={background}/></span>
+            <Element is={Header} text="Subtitle" fontSize={isFacebook ? 20 : 18} id="subtitle" background={background}/></span>
         </span>
-        <Element is={ImageUpload} id="image" width={1200} height={628} alt="" canvas style={{ position: 'absolute', bottom: '10px', left: '10px' }} />
+        <Element is={ImageUpload} id="image" width={isFacebook ? 1200 : 1350} height={isFacebook ? 628 : 1080} alt="" canvas style={{ position: 'absolute', bottom: '10px', left: '10px' }} />
       </div>
     );
 };
@@ -70,14 +83,6 @@ export const PostSettings = () => {
                 <input type="number" value={padding} onChange={(e) => setProp((props) => props.padding = e.target.value)} className="w-full h-6 border border-gray-300 rounded-md" />
             </div>
             <div className="flex flex-col gap-2 mb-2">
-                <label className="block text-sm font-medium text-gray-100">Height</label>
-                <input type="text" value={height} onChange={(e) => setProp((props) => props.height = e.target.value || 'auto')} className="w-full h-6 border border-gray-300 rounded-md" />
-            </div>
-            <div className="flex flex-col gap-2 mb-2">
-                <label className="block text-sm font-medium text-gray-100">Width</label>
-                <input type="text" value={width} onChange={(e) => setProp((props) => props.width = e.target.value || '800px')} className="w-full h-6 border border-gray-300 rounded-md" />
-            </div>
-            <div className="flex flex-col gap-2 mb-2">
                 <label className="block text-sm font-medium text-gray-100">Gap</label>
                 <input type="number" value={gap} onChange={(e) => setProp((props) => props.gap = e.target.value)} className="w-full h-6 border border-gray-300 rounded-md" />
             </div>
@@ -90,8 +95,6 @@ Post.craft = {
     props: {
         background: "#b3b3b3",
         padding: 20,
-        height: 'auto',
-        width: '800px',
         gap: 0
     },
     related: {

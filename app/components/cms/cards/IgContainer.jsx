@@ -2,7 +2,7 @@
 import React, { useRef, useEffect } from "react";
 import { useNode } from "@craftjs/core";
 
-export const CardsContainer = ({ background, padding = 0, margin = 0, layout = "flex", children }) => {
+export const IgContainer = ({ background, padding = 0, margin = 0, layout = "flex", children }) => {
   const { connectors: { connect, drag } } = useNode();
   const ref = useRef(null);
 
@@ -15,7 +15,7 @@ export const CardsContainer = ({ background, padding = 0, margin = 0, layout = "
   return (
     <div
       ref={ref}
-      style={{ background, padding: `${padding}px`, margin: `${margin}px`, height: '628px', width: '1200px', overflow: 'hidden' }}
+      style={{ background, padding: `${padding}px`, margin: `${margin}px`, height: '1080px', width: '1350px', overflow: 'hidden' }}
       className={`border-dotted border-2 relative`}
     >
       {children}
@@ -23,12 +23,11 @@ export const CardsContainer = ({ background, padding = 0, margin = 0, layout = "
   );
 };
 
-export const CardsContainerSettings = () => {
-  const { actions: { setProp }, background, padding, margin, layout } = useNode((node) => ({
+export const IgContainerSettings = () => {
+  const { actions: { setProp }, background, padding, margin } = useNode((node) => ({
     background: node.data.props.background,
     padding: node.data.props.padding,
-    margin: node.data.props.margin,
-    layout: node.data.props.layout
+    margin: node.data.props.margin
   }));
 
   return (
@@ -64,14 +63,16 @@ export const CardsContainerSettings = () => {
   );
 };
 
-CardsContainer.craft = {
+IgContainer.craft = {
   props: {
     background: '#b3b3b3',
     padding: 0,
-    margin: 0
+    margin: 0,
+    height: '1080px',
+    width: '1350px',
   },
   related: {
-    settings: CardsContainerSettings
+    settings: IgContainerSettings
   },
   rules: {
     canDrop: () => true,
