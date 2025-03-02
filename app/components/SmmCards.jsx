@@ -55,25 +55,33 @@ const SmmCards = () => {
       <Editor resolver={{ Post, Button, Header, ImageUploadSettings, ImageUpload, Container, PostTop, TwoColumnContainer, ThreeColumnContainerSettings, TextArea, ThreeColumnContainer, TwoColumnContainerSettings, OneColumnContainer, OneColumnContainerSettings, FbContainerSettings, FbContainer, MainContainerSettings, ButtonSettings, CardSettings, IconsComponent, IconsSettings, IgContainer, IgContainerSettings, Post }} >
         <div className="grid grid-cols-[3fr_1fr] h-full w-full lg:mb-0">
           <div className='flex justify-center items-normal h-full w-full'>
-            <UrlConverter onConvert={handleConvert} className="url-converter-sidebar" />
-            {selectedCard === 'Facebook' && (
-              <Frame>
-                <Element is={FbContainer} canvas>
-                  <Element is={Post} background={"#fff"} containerType="facebook" h1={convertedData?.h1} h2={convertedData?.h2} img={convertedData?.img} />
-                </Element>
-              </Frame>
-            )}
-            {selectedCard === 'Instagram' && (
-              <Frame>
-                <div className='flex justify-center items-start h-full w-full'>
-                  <div style={{ transform: 'scale(0.5)', transformOrigin: 'top' }}>
-                    <Element is={IgContainer} canvas>
-                      <Element is={Post} background={"#fff"} containerType="instagram" h1={convertedData?.h1} h2={convertedData?.h2} img={convertedData?.img} />
+              <UrlConverter onConvert={handleConvert} className="url-converter-sidebar" />
+        
+
+              {selectedCard === 'Facebook' && (
+               <div className='flex flex-col justify-normal items-center h-full w-full ml-3'>
+                  <h1 className='text-blue-500 text-center py-5 text-xl font-bold'>Facebook Image Card Preview</h1>
+                  <Frame key={`facebook-${JSON.stringify(convertedData)}`}>
+                    <Element is={FbContainer} canvas>
+                      <Element is={Post} background={"#fff"} containerType="facebook" h1={convertedData?.h1} h2={convertedData?.h2} img={convertedData?.img} />
                     </Element>
-                  </div>
+                  </Frame>
                 </div>
-              </Frame>
-            )}
+              )}
+              {selectedCard === 'Instagram' && (
+              <div className='flex flex-col justify-normal items-center h-full w-full'>
+                    <h1 className='text-rose-700 text-center py-5 text-xl font-bold'>Instagram Image Card Preview</h1>
+                  <Frame key={`instagram-${JSON.stringify(convertedData)}`}>
+                    <div className='flex justify-center items-start h-full w-full'>
+                      <div style={{ transform: 'scale(0.5)', transformOrigin: 'top' }}>
+                        <Element is={IgContainer} canvas>
+                          <Element is={Post} background={"#fff"} containerType="instagram" h1={convertedData?.h1} h2={convertedData?.h2} img={convertedData?.img} />
+                        </Element>
+                      </div>
+                    </div>
+                  </Frame>
+              </div>
+              )}
           </div>
           <div className='fixed right-0 top-0 z-10 w-[20vw] max-w-[20vw] min-w-[20vw] bg-stone-900 h-full overflow-y-auto'>
             <Topbar />
