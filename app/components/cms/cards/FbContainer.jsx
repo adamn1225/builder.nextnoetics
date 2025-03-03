@@ -74,10 +74,10 @@ FbContainer.craft = {
     settings: FbContainerSettings
   },
   rules: {
-    canDrop: () => true,
-    canDrag: () => true,
+    canDrop: () => false,
+    canDrag: () => false,
     canMoveIn: () => true,
-    canMoveOut: () => true
+    canMoveOut: () => false
   },
   isCanvas: true
 };
